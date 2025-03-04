@@ -2,6 +2,7 @@
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'MysticalDevil/inlay-hints.nvim'
 Plug 'github/copilot.vim'
 Plug 'numToStr/Comment.nvim'
