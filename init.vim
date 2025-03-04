@@ -1,0 +1,1 @@
+/home/socpite/.config/nvim/init.vim
