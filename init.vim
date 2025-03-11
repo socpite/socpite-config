@@ -12,6 +12,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'wincent/command-t'
 
 " For vsnip users.
 Plug 'hrsh7th/cmp-vsnip'
@@ -39,6 +40,7 @@ let g:zig_fmt_autosave = 0
 autocmd BufWritePre *.zig,*.zon lua vim.lsp.buf.format()
 
 :lua << EOF
+require('wincent.commandt').setup()
   local lspconfig = require('lspconfig')
   lspconfig.zls.setup {
     -- Server-specific settings. See `:help lspconfig-setup`
@@ -125,7 +127,7 @@ autocmd BufWritePre *.zig,*.zon lua vim.lsp.buf.format()
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      ['<Enter>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<S-Enter>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -179,7 +181,10 @@ autocmd BufWritePre *.zig,*.zon lua vim.lsp.buf.format()
 require("keymapping")
 EOF
 
+imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 map <C-/> gcc
+map <C-A-o> :CommandT<Enter>
 set number
 
 colorscheme kanagawa
