@@ -42,36 +42,6 @@ autocmd BufWritePre *.zig,*.zon lua vim.lsp.buf.format()
 :lua << EOF
 require('wincent.commandt').setup()
   local lspconfig = require('lspconfig')
-  lspconfig.zls.setup {
-    -- Server-specific settings. See `:help lspconfig-setup`
-
-    -- omit the following line if `zls` is in your PATH
-    -- cmd = { '/path/to/zls_executable' },
-    -- There are two ways to set config options:
-    --   - edit your `zls.json` that applies to any editor that uses ZLS
-    --   - set in-editor config options with the `settings` field below.
-    --
-    -- Further information on how to configure ZLS:
-    -- https://zigtools.org/zls/configure/
-    settings = {
-      zls = {
-	enable_inlay_hints = true,
-      inlay_hints_show_builtin = true,
-      inlay_hints_exclude_single_argument = true,
-      inlay_hints_hide_redundant_param_names = false,
-      inlay_hints_hide_redundant_param_names_last_token = false,
-	enable_argument_placeholders = false,
-        -- Whether to enable build-on-save diagnostics
-        --
-        -- Further information about build-on save:
-        -- https://zigtools.org/zls/guides/build-on-save/
-        enable_build_on_save = true,
-	semantic_tokens = 'full'
-        -- omit the following line if `zig` is in your PATH
-        -- zig_exe_path = '/path/to/zig_executable'
-      }
-    }
-  }
   require("inlay-hints").setup({
   	commands = { enable = true }, -- Enable InlayHints commands, include `InlayHintsToggle`, `InlayHintsEnable` and `InlayHintsDisable`
   	autocmd = { enable = true } -- Enable the inlay hints on `LspAttach` event
@@ -175,7 +145,14 @@ require('wincent.commandt').setup()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['zls'].setup {
-    capabilities = capabilities
+	capabilities = capabilities,
+	settings = {
+		zls = {
+			enable_build_on_save = true,
+			inlay_hints_show_variable_type_hints = false,
+			enable_argument_placeholders = false,
+		}
+	}
   }
   require('Comment').setup()
 require("keymapping")
