@@ -155,7 +155,6 @@ require('wincent.commandt').setup()
 	}
   }
   require('Comment').setup()
-require("keymapping")
 EOF
 
 imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
