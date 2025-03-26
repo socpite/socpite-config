@@ -42,12 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-keybind = ctrl+shift+w=close_surface
-keybind = ctrl+alt+h=goto_split:left
-keybind = ctrl+alt+j=goto_split:down
-keybind = ctrl+alt+k=goto_split:up
-keybind = ctrl+alt+l=goto_split:right
+cmd = fish
 keybind = f11=toggle_fullscreen
-keybind = cmd+alt+h=resize_split:left,10
+
 # resize right
-keybind = cmd+alt+l=resize_split:right,10
