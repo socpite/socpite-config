@@ -1,27 +1,27 @@
 ## How to import config:
 
-- Make sure you have Neovim, ghostty and vim-plug installed
+- Make sure you have Neovim, tmux, tpm, ghostty and vim-plug installed
+- Install zls and pyright for LSP
 - Run `sh import.sh` 
 
 ## Features:
-- LSP for zig
+- LSP for zig and python
 - markdown preview
 - autocompletion, copilot
 - various plugins for better experience
-- Ghostty split setup
+- Tmux split setup
 
-## Ghostty keybindings:
-<!--keybinding tale-->
+## Tmux keybindings:
+<!--keybinding table-->
 | Keybinding | Description |
 |------------|-------------|
-| `Ctrl + Shift + w` | Close surface |
-| `Ctrl + Shift + o` | New surface right |
-| `Ctrl + Shift + e` | New surface bottom |
-| `Ctrl + Alt + h` | Move to left surface |
-| `Ctrl + Alt + j` | Move to bottom surface |
-| `Ctrl + Alt + k` | Move to top surface |
-| `Ctrl + Alt + l` | Move to right surface |
-| `Cmd + Alt + h/j/k/l` | Resize surface |
+| `Prefix + o` | New pane right |
+| `Prefix + e` | New pane bottom |
+| `Ctrl-h` | Move to left pane |
+| `Ctrl-j` | Move to bottom pane |
+| `Ctrl-k` | Move to top pane |
+| `Ctrl-l` | Move to right pane |
+| `Prefix + Ctrl-h/j/k/l` | Resize pane |
 
 
 

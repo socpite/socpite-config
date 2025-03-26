@@ -24,6 +24,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'tpope/vim-sensible'
 Plug 'ziglang/zig.vim'
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -148,16 +149,18 @@ require('wincent.commandt').setup()
 	capabilities = capabilities,
 	settings = {
 		zls = {
-			enable_build_on_save = true,
 			inlay_hints_show_variable_type_hints = false,
 			enable_argument_placeholders = false,
 		}
 	}
   }
+  require('lspconfig')['html'].setup {}
+  require('lspconfig')['pyright'].setup {}
   require('Comment').setup()
 EOF
 
-imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+imap <C-L> <Plug>(copilot-accept-word) 
 let g:copilot_no_tab_map = v:true
 map <C-/> gcc
 map <C-A-o> :CommandT<Enter>
