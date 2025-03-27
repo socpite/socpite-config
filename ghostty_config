@@ -42,7 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-cmd = fish
+command = fish
 keybind = f11=toggle_fullscreen
 
 # resize right
