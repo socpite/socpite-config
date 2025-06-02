@@ -13,6 +13,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'wincent/command-t'
+Plug 'mfussenegger/nvim-lint'
 
 " For vsnip users.
 Plug 'hrsh7th/cmp-vsnip'
@@ -39,8 +40,14 @@ let g:zig_fmt_autosave = 0
 " The Zig FAQ answers some questions about `zig fmt`:
 " https://github.com/ziglang/zig/wiki/FAQ
 autocmd BufWritePre *.zig,*.zon lua vim.lsp.buf.format()
+autocmd BufWritePre * lua require('lint').try_lint()
 
 :lua << EOF
+require('lint').linters_by_ft = {
+  cpp = {'cppcheck'},
+  c = {'cppcheck'},
+  python = {'ruff'},
+}
 require('wincent.commandt').setup()
   local lspconfig = require('lspconfig')
   require("inlay-hints").setup({
@@ -155,9 +162,15 @@ require('wincent.commandt').setup()
 	}
   }
   require('lspconfig')['html'].setup {}
-  require('lspconfig')['pyright'].setup {}
+  require('lspconfig')['pyright'].setup {capabilities = capabilities}
+  require('lspconfig')['ccls'].setup {}
+  require('lspconfig')['ruff'].setup {}
+  
   require('Comment').setup()
 EOF
+
+autocmd Filetype html,css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd Filetype cpp,cc setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 imap <C-L> <Plug>(copilot-accept-word) 
